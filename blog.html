@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ddf2f3;
+    }
+    header {
+      background-color: #a4e8eb;;
+      color: rgb(0, 0, 0);
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgb(177, 228, 243);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .blog-form {
+      margin-bottom: 20px;
+    }
+    .blog-form textarea {
+      width: 100%;
+      height: 200px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #333;
+      font-family: 'Courier New', monospace; /* Monospaced font for code-like input */
+      white-space: pre-wrap; /* Preserve whitespace and newlines */
+      word-wrap: break-word;
+    }
+    .blog-form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .blog-form select, .blog-form input {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 5px;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .blog-form button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .blog-form button:hover {
+      background-color: #45a049;
+    }
+    .blog-posts {
+      margin-top: 40px;
+    }
+    .post {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+    }
+    .post h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .post p {
+      font-size: 16px;
+      color: #555;
+    }
+    .tag-guide {
+      margin-top: 20px;
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .tag-guide h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .tag-guide ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .tag-guide li {
+      font-size: 16px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Post Your Contribution</h1>
+</header>
+
+<div class="container">
+  <h2>Create a New Blog Post</h2>
+
+  <form id="blogForm" class="blog-form">
+    <label for="headlineColor">Choose Headline Color:</label>
+    <input type="color" id="headlineColor" name="headlineColor" value="#000000">
+    
+    <label for="fontFamily">Choose Font for Body Text:</label>
+    <select id="fontFamily" name="fontFamily">
+      <option value="'Arial', sans-serif" selected>Arial</option>
+      <option value="'Courier New', monospace">Courier New</option>
+      <option value="'Georgia', serif">Georgia</option>
+      <option value="'Times New Roman', Times, serif">Times New Roman</option>
+      <option value="'Verdana', sans-serif">Verdana</option>
+    </select>
+    
+    <label for="blogContent">Write Your Blog Post (use <b>&lt;br&gt;</b> for line breaks and <b>&lt;hr&gt;</b> for horizontal lines):</label>
+    <textarea id="blogContent" placeholder="Write your blog post here..." required></textarea>
+    
+    <button type="submit">Post Blog</button>
+  </form>
+
+  <div class="blog-posts" id="blogPosts">
+    <!-- Blog posts will appear here -->
+  </div>
+
+  <div class="tag-guide">
+    <h3>How to Use HTML Tags:</h3>
+    <ul>
+      <li><b>&lt;br&gt;</b> – Adds a line break (use for starting a new line)</li>
+      <li><b>&lt;hr&gt;</b> – Adds a horizontal line (use to separate content)</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  const blogForm = document.getElementById("blogForm");
+  const blogContent = document.getElementById("blogContent");
+  const blogPosts = document.getElementById("blogPosts");
+  const headlineColor = document.getElementById("headlineColor");
+  const fontFamily = document.getElementById("fontFamily");
+
+  blogForm.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the form from submitting to the server
+
+    let postContent = blogContent.value.trim(); // Get the content of the blog post
+    const selectedHeadlineColor = headlineColor.value; // Get selected color for headline
+    const selectedFontFamily = fontFamily.value; // Get selected font family for body text
+
+    // Replace <br> with actual line breaks and <hr> with horizontal lines
+    postContent = postContent.replace(/&lt;br&gt;/g, '<br>');
+    postContent = postContent.replace(/&lt;hr&gt;/g, '<hr>');
+
+    if (postContent || postContent === "") {  // Ensure there's content (even if it's just blank spaces)
+      // Create a new blog post element
+      const postElement = document.createElement("div");
+      postElement.classList.add("post");
+
+      // Create the headline with the selected color
+      const postTitle = document.createElement("h3");
+      postTitle.textContent = "Your Contribution";
+      postTitle.style.color = selectedHeadlineColor; // Apply selected headline color
+      postElement.appendChild(postTitle);
+
+      // Create the paragraph element to hold the blog content with proper HTML rendering
+      const postText = document.createElement("p");
+      postText.innerHTML = postContent; // Use innerHTML to render HTML tags like <br> and <hr>
+      postText.style.fontFamily = selectedFontFamily; // Apply selected font family for body text
+      postElement.appendChild(postText);
+
+      // Add the new post to the blog posts section
+      blogPosts.insertBefore(postElement, blogPosts.firstChild);
+
+      // Clear the form for new input
+      blogContent.value = "";
+    }
+  });
+</script>
+
+</body>
+</html>

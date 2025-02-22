@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(270deg, #4facb1, #abd9db);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            background: rgb(209, 229, 238);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 600px;
+            text-align: center;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .checkbox-container {
+            /* display: flex; */
+            /* align-items: center; */
+            gap: 1px;
+        }
+        button {
+            background-color: #ff758c;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let phone = document.getElementById("phone").value;
+            let terms = document.getElementById("terms").checked;
+            let button = document.getElementById("signupButton");
+            
+            button.disabled = !(name && age && phone && terms);
+        }
+    </script>
+</head>
+<body>
+    <form action="./neuro.html">
+    <div class="container">
+        <h2>Signup</h2>
+        <input type="text" id="name" placeholder="Enter your name" oninput="validateForm()">
+        <input type="number" id="age" placeholder="Enter your age" oninput="validateForm()">
+        <input type="tel" id="phone" placeholder="Enter your phone number" oninput="validateForm()">
+        <div class="checkbox-container">
+            <input type="checkbox" id="terms" onclick="validateForm()">
+            <label for="terms">agree to the terms and conditions</label>
+        </div>
+        <button id="signupButton" disabled>Sign Up</button>
+    </div>
+</form>
+</body>
+</html>

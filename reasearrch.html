@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Better World for Neurodiverse Individuals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background 0.3s, color 0.3s;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .dark-mode {
+            background: #121212;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .opinion, .research {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f9f9f9;
+            transition: background 0.3s;
+        }
+        .dark-mode .opinion, .dark-mode .research {
+            background: #333;
+            border-color: #555;
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color:  #a4e8eb;
+            /* background: linear-gradient(45deg, #ff6b6b, #6b6bff); */
+            background-size: 400% 400%;
+            /* animation: gradientAnimation 10s ease infinite;
+            z-index: -1; */
+        }
+        /* @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        } */
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1 id="title">Better World for Neurodiverse Individuals</h1>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <button onclick="switchLanguage()">Change to Hindi</button>
+        
+        <div class="research">
+            <h3 id="research1">Latest Research on Neurodiversity</h3>
+            <p id="research1_desc">Studies show that workplaces with neurodiverse hiring programs see increased innovation and productivity.</p>
+        </div>
+
+        <div class="opinion">
+            <h3 id="opinion1">John Doe's Perspective</h3>
+            <p id="opinion1_desc">Creating an inclusive society means providing opportunities for neurodiverse individuals to thrive in workplaces and education.</p>
+        </div>
+        
+        <div class="opinion">
+            <h3 id="opinion2">Jane Smith's Perspective</h3>
+            <p id="opinion2_desc">Neurodiversity should be embraced, and we should promote awareness and understanding to build a more compassionate world.</p>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+        
+        function switchLanguage() {
+            let title = document.getElementById("title");
+            let research1 = document.getElementById("research1");
+            let research1_desc = document.getElementById("research1_desc");
+            let opinion1 = document.getElementById("opinion1");
+            let opinion1_desc = document.getElementById("opinion1_desc");
+            let opinion2 = document.getElementById("opinion2");
+            let opinion2_desc = document.getElementById("opinion2_desc");
+            
+            if (title.innerText === "Better World for Neurodiverse Individuals") {
+                title.innerText = "न्यूरोडाइवर्स व्यक्तियों के लिए एक बेहतर दुनिया";
+                research1.innerText = "न्यूरोडाइवर्सिटी पर नवीनतम शोध";
+                research1_desc.innerText = "अध्ययनों से पता चलता है कि न्यूरोडाइवर्स हायरिंग कार्यक्रमों वाले कार्यस्थलों में नवाचार और उत्पादकता बढ़ती है।";
+                opinion1.innerText = "जॉन डो का दृष्टिकोण";
+                opinion1_desc.innerText = "एक समावेशी समाज बनाने का अर्थ है न्यूरोडाइवर्स व्यक्तियों को कार्यस्थलों और शिक्षा में फलने-फूलने के अवसर प्रदान करना।";
+                opinion2.innerText = "जेन स्मिथ का दृष्टिकोण";
+                opinion2_desc.innerText = "न्यूरोडाइवर्सिटी को अपनाना चाहिए, और हमें एक अधिक करुणामय दुनिया बनाने के लिए जागरूकता और समझ को बढ़ावा देना चाहिए।";
+            } else {
+                title.innerText = "Better World for Neurodiverse Individuals";
+                research1.innerText = "Latest Research on Neurodiversity";
+                research1_desc.innerText = "Studies show that workplaces with neurodiverse hiring programs see increased innovation and productivity.";
+                opinion1.innerText = "John Doe's Perspective";
+                opinion1_desc.innerText = "Creating an inclusive society means providing opportunities for neurodiverse individuals to thrive in workplaces and education.";
+                opinion2.innerText = "Jane Smith's Perspective";
+                opinion2_desc.innerText = "Neurodiversity should be embraced, and we should promote awareness and understanding to build a more compassionate world.";
+            }
+        }
+    </script>
+</body>
+</html>
